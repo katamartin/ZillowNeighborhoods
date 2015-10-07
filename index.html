@@ -21,9 +21,19 @@
 
 var map;
 function initMap() {
+  var styles = [
+  {
+    featureType: "all",
+    elementType: "labels",
+    stylers: [
+      { visibility: "off" }
+    ]
+  }
+];
   map = new google.maps.Map(document.getElementById('map'), {
     zoom: 12,
-    center: { lat: 37.7833, lng: -122.4167 }
+    center: { lat: 37.7833, lng: -122.4167 },
+    styles: styles
   });
 
   map.data.loadGeoJson("./neighborhoods.geojson");
