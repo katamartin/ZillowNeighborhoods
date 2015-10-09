@@ -4,57 +4,23 @@
     <title>Bay Area Neighborhoods</title>
     <link rel="stylesheet" href="neighborhoods.css" type="text/css">
     <meta name="viewport" content="initial-scale=1.0">
+    <script src="neighborhoods.js"></script>
     <meta charset="utf-8">
   </head>
   <body>
     <input id="pac-input" class="controls" type="text"
         placeholder="Enter an address">
+
     <div id="map"></div>
-    <script>
-
-var map;
-function initMap() {
-  var styles = [
-    {
-      featureType: "all",
-      elementType: "labels",
-      stylers: [
-        { visibility: "off" }
-      ]
-    }
-  ];
-  map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 12,
-    center: { lat: 37.7833, lng: -122.4167 },
-    styles: styles
-  });
-
-  map.data.loadGeoJson("./subset.geojson");
-  map.data.setStyle(function(feature) {
-    return { fillOpacity: 0.0, strokeWeight: 1.0 };
-  });
-
-  map.data.addListener('mouseover', function(event) {
-    map.data.overrideStyle(event.feature, {fillColor: 'white', fillOpacity: 1.0 });
-    var neighborhood = event.feature.getProperty("NAME");
-    document.getElementById('neighborhood').textContent = neighborhood;
-  });
-
-  map.data.addListener('mouseout', function(event) {
-    map.data.revertStyle();
-    document.getElementById('neighborhood').textContent = "";
-  });
-
-}
-
-    </script>
     <div id="neighborhood"></div>
+
     <a href="http://www.zillow.com/howto/api/neighborhood-boundaries.htm">
       <img class="zillow"
            src="http://www.zillowstatic.com/vstatic/dd6cea9/static/logos/Zillow_Logo_HoodsProvided_RightAligned.gif"
            draggable="false">
    </a>
+   
     <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=&signed_in=true&libraries=geometry,places&callback=initMap"></script>
+        src="https://maps.googleapis.com/maps/api/js?key=&signed_in=true&libraries=geometry,places&callback=Map.initMap"></script>
   </body>
 </html>
