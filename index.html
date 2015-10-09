@@ -20,6 +20,12 @@
         bottom: 15px;
         right: 40px;
       }
+
+      #neighborhood {
+        position: absolute;
+        top: 50px;
+        left: 10px;
+      }
     </style>
   </head>
   <body>
@@ -50,17 +56,19 @@ function initMap() {
 
   map.data.addListener('mouseover', function(event) {
     map.data.overrideStyle(event.feature, {fillColor: 'white', fillOpacity: 1.0 });
-  });
-  map.data.addListener('mouseout', function(event) {
-    map.data.revertStyle();
+    var neighborhood = event.feature.getProperty("NAME");
+    document.getElementById('neighborhood').textContent = neighborhood;
   });
 
-  map.data.addListener('click', function(event) {
-    debugger;
+  map.data.addListener('mouseout', function(event) {
+    map.data.revertStyle();
+    document.getElementById('neighborhood').textContent = "";
   });
+
 }
 
     </script>
+    <div id="neighborhood"></div>
     <a href="http://www.zillow.com/howto/api/neighborhood-boundaries.htm">
       <img class="zillow"
            src="http://www.zillowstatic.com/vstatic/dd6cea9/static/logos/Zillow_Logo_HoodsProvided_RightAligned.gif"
