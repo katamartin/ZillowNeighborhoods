@@ -2,33 +2,13 @@
 <html>
   <head>
     <title>Bay Area Neighborhoods</title>
+    <link rel="stylesheet" href="neighborhoods.css" type="text/css">
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
-    <style>
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-
-      #map {
-        height: 100%;
-      }
-
-      .zillow {
-        position: absolute;
-        bottom: 15px;
-        right: 40px;
-      }
-
-      #neighborhood {
-        position: absolute;
-        top: 50px;
-        left: 10px;
-      }
-    </style>
   </head>
   <body>
+    <input id="pac-input" class="controls" type="text"
+        placeholder="Enter an address">
     <div id="map"></div>
     <script>
 
