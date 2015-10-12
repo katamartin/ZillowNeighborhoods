@@ -68,7 +68,7 @@
       marker.setPosition(place.geometry.location);
       marker.setVisible(true);
 
-      // var neighborhood = findNeighborhood(map, place) || "";
+      var neighborhood = findNeighborhood(map, place) || "";
       infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + neighborhood);
       infowindow.open(map, marker);
     });
@@ -78,13 +78,17 @@
         place.geometry.location.lat(),
         place.geometry.location.lng()
       );
-      var neighborhood = "";
+      var neighborhood;
       map.data.forEach(function(feature) {
+        if (neighborhood || feature.getProperty("NAME") === "Oakland Airport") {
+          return;
+        }
         var poly = new google.maps.Polygon({paths: feature.j.j[0].j});
         if (google.maps.geometry.poly.containsLocation(latLng, poly)) {
-          return feature.getProperty("NAME");
+          neighborhood = feature.getProperty("NAME");
         }
       });
+      return neighborhood;
     };
   }
 })();
