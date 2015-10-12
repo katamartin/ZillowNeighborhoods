@@ -15,13 +15,13 @@ the containing neighborhood's name.
 converted to geoJSON for easy overlay with Google Maps using GDAL. The features
 were first filtered to just those contained by San Francisco and Oakland using
 following command:
-'''
+```
 ogr2ogr -where 'NAME = San Francisco OR NAME = Oakland' subset.shp ZillowNeighborhoods-CA.shp
-'''
+```
 The resultant Shapefile was then converted to geoJSON again using GDAL:
 
-'''
+```
 ogr2ogr2 -f GeoJSON -t-srs EPSG:4269 subset.geojson subset.shp
-'''
+```
 
 [shapefiles]: http://www.zillow.com/howto/api/neighborhood-boundaries.htm
